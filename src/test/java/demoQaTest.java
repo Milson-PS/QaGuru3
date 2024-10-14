@@ -15,8 +15,6 @@ public class demoQaTest {
 
     }
 
-
-
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
@@ -50,7 +48,6 @@ public class demoQaTest {
         $("#submit").click();
 
 
-
         // Проверка
         $(".modal-content").shouldHave(text("Pavel"));
         $(".modal-content").shouldHave(text("Milyukov"));
@@ -63,17 +60,6 @@ public class demoQaTest {
         $(".modal-content").shouldHave(text("ул.Ленина"));
         $(".modal-content").shouldHave(text("NCR"));
         $(".modal-content").shouldHave(text("Noida"));
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
