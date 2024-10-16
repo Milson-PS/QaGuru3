@@ -1,4 +1,3 @@
-package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -6,17 +5,19 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class demoQaTest {
+public class DemoQaTest {
     @BeforeAll
-    static void beforeALL() {
+    static void BeforeALL() {
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://demoqa.com";
 
     }
 
+
+
     @Test
-    void fillFormTest() {
+    void FillFormTest() {
         open("/automation-practice-form");
         // ФИО
         $("#firstName").setValue("Pavel");
@@ -48,6 +49,7 @@ public class demoQaTest {
         $("#submit").click();
 
 
+
         // Проверка
         $(".modal-content").shouldHave(text("Pavel"));
         $(".modal-content").shouldHave(text("Milyukov"));
@@ -60,6 +62,7 @@ public class demoQaTest {
         $(".modal-content").shouldHave(text("ул.Ленина"));
         $(".modal-content").shouldHave(text("NCR"));
         $(".modal-content").shouldHave(text("Noida"));
+
 
     }
 }
