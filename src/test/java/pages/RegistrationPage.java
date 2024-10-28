@@ -1,27 +1,27 @@
 package pages;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byValue;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
 
-    private   SelenideElement firstNameInput = $("#firstName"),
-    lastNameInput = $("#lastName"),
-    userEmailInput = $("#userEmail"),
-    genderWrapper = $("#genterWrapper"),
-    userNumberInput = $("#userNumber"),
-    subjectsInput = $("#subjectsInput"),
-    hobbiesClick = $("#hobbiesWrapper"),
-    uploadPicture = $("#uploadPicture"),
-    addressInput =  $("#currentAddress"),
-    submitClick =  $("#submit");
+    private SelenideElement firstNameInput = $("#firstName"),
+            lastNameInput = $("#lastName"),
+            userEmailInput = $("#userEmail"),
+            genderWrapper = $("#genterWrapper"),
+            userNumberInput = $("#userNumber"),
+            subjectsInput = $("#subjectsInput"),
+            hobbiesClick = $("#hobbiesWrapper"),
+            uploadPicture = $("#uploadPicture"),
+            addressInput = $("#currentAddress"),
+            submitClick = $("#submit"),
+            checkResult = $(".modal-content"),
+            checkResultMin = $(".modal-content");
 
-
-    public RegistrationPage openPage(){
+    public RegistrationPage openPage() {
         open("/automation-practice-form");
         return this;
     }
@@ -83,7 +83,7 @@ public class RegistrationPage {
     }
 
 
-    public RegistrationPage setStateCity(String state, String city ) {
+    public RegistrationPage setStateCity(String state, String city) {
         $("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#city").click();
@@ -91,9 +91,42 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSubmit( ) {
-       submitClick.click();
+    public RegistrationPage setSubmit() {
+        submitClick.click();
         return this;
     }
 
+    public RegistrationPage setCheckResult(String FirstName, String LastName, String UserEmail, String Gender,
+                                           String Number, String DateOfBirth, String Subjects, String Hobbies,
+                                           String Picture, String Address, String State, String StateCity) {
+        checkResult.shouldHave(text("Pavel"));
+        checkResult.shouldHave(text("Milyukov"));
+        checkResult.shouldHave(text("milyukov@yandex.ru"));
+        checkResult.shouldHave(text("Male"));
+        checkResult.shouldHave(text("0123456789"));
+        checkResult.shouldHave(text("16 January,1993"));
+        checkResult.shouldHave(text("Computer Science"));
+        checkResult.shouldHave(text("Music"));
+        checkResult.shouldHave(text("bag.png"));
+        checkResult.shouldHave(text("ул.Ленина"));
+        checkResult.shouldHave(text("NCR"));
+        checkResult.shouldHave(text("Noida"));
+        return this;
+    }
+
+
+    public RegistrationPage setCheckResultMin(String FirstName, String LastName, String UserEmail, String Gender,
+                                              String Number, String DateOfBirth) {
+        checkResultMin.shouldHave(text("Pavel"));
+        checkResultMin.shouldHave(text("Milyukov"));
+        checkResultMin.shouldHave(text("milyukov@yandex.ru"));
+        checkResultMin.shouldHave(text("Male"));
+        checkResultMin.shouldHave(text("0123456789"));
+        checkResultMin.shouldHave(text("16 January,1993"));
+        checkResultMin.shouldHave(text("Music"));
+        checkResultMin.shouldHave(text("ул.Ленина"));
+        return this;
+
+
+    }
 }
