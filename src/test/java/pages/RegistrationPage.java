@@ -1,10 +1,10 @@
-package pages;
+package qa.guru.pages.components;
 import com.codeborne.selenide.SelenideElement;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import qa.guru.pages.components.TableComponent;
 
 public class RegistrationPage {
 
@@ -20,6 +20,10 @@ public class RegistrationPage {
             submitClick = $("#submit"),
             checkResult = $(".modal-content"),
             checkResultMin = $(".modal-content");
+
+            TableComponent resultsTable = new TableComponent();
+
+
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -117,16 +121,18 @@ public class RegistrationPage {
 
     public RegistrationPage setCheckResultMin(String FirstName, String LastName, String UserEmail, String Gender,
                                               String Number, String DateOfBirth) {
-        checkResultMin.shouldHave(text("Pavel"));
-        checkResultMin.shouldHave(text("Milyukov"));
-        checkResultMin.shouldHave(text("milyukov@yandex.ru"));
-        checkResultMin.shouldHave(text("Male"));
-        checkResultMin.shouldHave(text("0123456789"));
-        checkResultMin.shouldHave(text("16 January,1993"));
-        checkResultMin.shouldHave(text("Music"));
-        checkResultMin.shouldHave(text("ул.Ленина"));
+        checkResultMin.shouldHave(text(FirstName));
+        checkResultMin.shouldHave(text(LastName));
+        checkResultMin.shouldHave(text(UserEmail));
+        checkResultMin.shouldHave(text(Gender));
+        checkResultMin.shouldHave(text(Number));
+        checkResultMin.shouldHave(text(DateOfBirth));
         return this;
+    }
+    public RegistrationPage checkResultIsNotVisible() {
+        resultsTable.checkTableIsNotVisible();
 
+        return this;
 
     }
 }

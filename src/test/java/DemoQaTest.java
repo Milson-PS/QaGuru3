@@ -1,8 +1,7 @@
-
+package qa.guru.tests;
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
 import pages.TestBase;
-
+import qa.guru.pages.components.RegistrationPage;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -52,17 +51,15 @@ public class DemoQaTest extends TestBase {
     }
 
     @Test
-    void negativeEmail() {
+    void incorrectPhoneNumberTest() {
         registrationPage.openPage()
-                .setFirstName("Pavel")
-                .setLastName("Milyukov")
+                .setFirstName("FirstName")
+                .setLastName("LastName")
                 .setGender("Male")
-                .setNumber("12345")
-                .setDateOfBirth("17", "July", "1780")
+                .setNumber("5553535")
+                .setDateOfBirth("17", "July", "2003")
                 .setSubmit();
 
-
-
+        registrationPage.checkResultIsNotVisible();
     }
-
 }
